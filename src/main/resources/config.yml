@@ -1,0 +1,66 @@
+# CrammedXP
+#
+# Minecraft only grants experience when a mob's death is credited to a player.
+# Cramming, suffocation and fall damage carry no such credit, so mobs killed that
+# way drop their normal loot and zero xp. That is deliberate in vanilla - it is
+# what stops fully automatic farms outproducing combat - so turning it on is a
+# balance decision, not a bug fix.
+#
+# Reload with /crammedxp reload.
+
+enabled: true
+
+# Which non-player death causes should award experience.
+#
+# CRAMMING alone matches the usual "too many mobs in one block" farm. Add others
+# if your farm kills a different way - SUFFOCATION for a piston crusher, FALL for
+# a drop tower, LAVA or FIRE for a burner. Every cause you add here makes another
+# farm design profitable, so add them deliberately.
+#
+# Valid values are Bukkit DamageCause names: CRAMMING, SUFFOCATION, FALL, LAVA,
+# FIRE, DROWNING, CONTACT, HOT_FLOOR, VOID, FREEZE, STARVATION.
+damage-causes:
+  - CRAMMING
+
+# Entities that never award xp here, whatever kills them.
+# Example: - VILLAGER
+excluded-entities: []
+
+# Only award xp if a player is within this many blocks. 0 disables the check.
+#
+# Worth setting if you have large unattended farms: without a player nearby the
+# orbs have nobody to collect them and simply tick until they despawn. 48 covers
+# an afk spot comfortably.
+require-player-within: 0
+
+xp:
+  # Multiplies every amount below. 0.5 halves the yield of cramming farms
+  # relative to killing mobs by hand; 1.0 makes them equivalent.
+  multiplier: 1.0
+
+  # Hard ceiling per death. 0 for no cap.
+  max-per-death: 0
+
+  # Vanilla gives baby animals no experience. Leave false to match it.
+  baby-animals-give-xp: false
+
+  # Used when an entity has no entry under per-entity below.
+  # Accepts a fixed number ("5") or a range ("1-3"), rolled per death.
+  default-hostile: "5"
+  default-passive: "1-3"
+
+  # Amounts matching what a player kill would have given. Slimes and magma cubes
+  # scale with their size automatically and are not listed here.
+  per-entity:
+    BLAZE: "10"
+    EVOKER: "10"
+    ELDER_GUARDIAN: "10"
+    RAVAGER: "20"
+    WITHER: "50"
+    ENDER_DRAGON: "12000"
+    VILLAGER: "0"
+    WANDERING_TRADER: "0"
+    IRON_GOLEM: "0"
+    SNOW_GOLEM: "0"
+    BAT: "0"
+    ARMOR_STAND: "0"

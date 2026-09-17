@@ -1,0 +1,17 @@
+name: CrammedXP
+version: '${project.version}'
+main: com.crammedxp.CrammedXP
+api-version: '26.2'
+author: CrammedXP
+description: Mobs that die from entity cramming drop experience.
+
+commands:
+  crammedxp:
+    description: Show status or reload the config.
+    usage: /crammedxp [reload]
+    aliases: [cxp]
+
+permissions:
+  crammedxp.admin:
+    description: Reload the config.
+    default: op
